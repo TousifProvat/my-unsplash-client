@@ -1,0 +1,24 @@
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  font-family: 'Noto Sans', sans-serif;
+  label {
+    padding-bottom: 0.5rem;
+    font-weight: 500;
+    font-size: 14px;
+  }
+  .customInput {
+    height: 50px;
+    padding: 0.8rem;
+    border-radius: 12px;
+    filter: drop-shadow(0px 1px 6px rgba(0, 0, 0, 0.1));
+    border: 1px solid #4f4f4f;
+    outline: none;
+    font-size: 14px;
+    font-weight: 500;
+    &::placeholder {
+      color: #bdbdbd;
+    }
+  }
+}

@@ -1,13 +1,13 @@
-import Header from '../Header'
-import './style.scss'
+import Header from '../Header';
+import './style.scss';
 
-const Layout = ({children}) => {
-    return (
-        <div className="layout">
-            <Header/>
-            {children}
-        </div>
-    )
-}
+const Layout = ({ children, headerRight }) => {
+  return (
+    <div className="layout">
+      <Header headerRight={headerRight} />
+      {children}
+    </div>
+  );
+};
 
-export default Layout
+export default Layout;
