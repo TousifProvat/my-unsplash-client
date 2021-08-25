@@ -28,7 +28,7 @@ const Modal = ({
             shadow="none"
             onClick={() => handleModal(false)}
           />
-          <Button text={submitText} bgColor={submitBtnColor} />
+          <Button text={submitText} bgColor={submitBtnColor} onClick={handleSubmit}/>
         </div>
       </div>
     </>
