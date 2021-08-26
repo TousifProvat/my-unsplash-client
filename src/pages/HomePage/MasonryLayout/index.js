@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import axios from '../../../helper/axios';
 import Card from '../../../components/Card';
 import Modal from '../../../components/Modal';

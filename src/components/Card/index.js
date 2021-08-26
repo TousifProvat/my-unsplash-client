@@ -6,7 +6,7 @@ import Button from '../UI/Button';
 const Card = ({ onClick, imageSrc, id, title }) => {
   return (
     <div className="Card">
-      <img src={imageSrc} />
+      <img src={imageSrc} alt={title} />
       <div className="details">
         <Button
           text="delete"
