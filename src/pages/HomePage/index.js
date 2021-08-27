@@ -1,72 +1,44 @@
-import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+
 // style
 import './style.scss';
 
 // comps
-import Layout from '../../components/Layout';
-import Modal from '../../components/Modal';
-import MasonryLayout from './MasonryLayout';
+import Card from '../../components/Card';
+import AddImageModal from './subComponents/AddImageModal';
+import DeleteImageModal from './subComponents/DeleteImageModal';
 
-// Ui
-import Button from '../../components/UI/Button';
-import Input from '../../components/UI/Input';
-
-// actions
-import { uploadImage } from '../../actions';
-
-const HomePage = () => {
+const HomePage = ({ show, setShow }) => {
   const upload = useSelector((state) => state.upload);
-  const [show, setShow] = useState(false);
-  const [title, setTitle] = useState('');
-  const [feedImage, setFeedImage] = useState('');
 
-  const dispatch = useDispatch();
+  const [deleteModalShow, setDeleteModalShow] = useState(false);
+  const [imageId, setImageId] = useState('');
 
-  const handleSubmit = () => {
-    if (!feedImage) {
-      return alert('Please select a image');
-    }
-    const form = new FormData();
-    form.append('title', title);
-    form.append('feedImage', feedImage);
-    dispatch(uploadImage(form));
-    setTitle('');
-    setFeedImage('');
-    setShow(false);
+  const handleCard = (image) => {
+    setImageId(image);
+    setDeleteModalShow(true);
   };
 
   return (
     <div id="home">
-      <Layout
-        headerRight={
-          <Button text="Add a photo" onClick={() => setShow(true)} />
-        }
-      >
-        <Modal
-          show={show}
-          handleModal={setShow}
-          title={'Add new image'}
-          submitText="Add Image"
-          submitBtncolor="#EB5757"
-          handleSubmit={handleSubmit}
-        >
-          <Input
-            type="text"
-            label="name"
-            placeholder="name"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
+      <AddImageModal show={show} setShow={setShow} />
+      <div className="masonaryContainer">
+        {upload.images.map((image, index) => (
+          <Card
+            key={index}
+            onClick={handleCard}
+            imageSrc={image.imageLink}
+            id={image._id}
+            title={image.title}
           />
-          <Input
-            type="file"
-            label="Picture"
-            required={true}
-            onChange={(e) => setFeedImage(e.target.files[0])}
-          />
-        </Modal>
-        {upload.loading ? 'loading...' : <MasonryLayout data={upload.images} />}
-      </Layout>
+        ))}
+      </div>
+      <DeleteImageModal
+        show={deleteModalShow}
+        setShow={setDeleteModalShow}
+        imageId={imageId}
+      />
     </div>
   );
 };

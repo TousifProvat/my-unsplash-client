@@ -1,12 +1,9 @@
 import axios from 'axios';
 
-const api = 'http://localhost:5000/api/v1';
+const api = 'https://my-unsplash-tap.herokuapp.com/api/v1';
 
 const axiosIntance = axios.create({
   baseURL: api,
-  // headers: {
-  //   Authorization: token ? `Bearer ${token}` : '',
-  // },
 });
 
 export default axiosIntance;
