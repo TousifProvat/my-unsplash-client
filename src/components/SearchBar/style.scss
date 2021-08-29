@@ -45,3 +45,25 @@
     }
   }
 }
+
+@media only screen and (max-width: 768px) {
+  .searchBar {
+    width: 200px;
+    height: 40px;
+    .searchIcon {
+      svg {
+        width: 20px;
+        height: 20px;
+      }
+    }
+  }
+  .searchInput {
+    background-color: transparent;
+  }
+}
+
+@media only screen and (max-width: 545px) {
+  .searchBar {
+    display: none;
+  }
+}
