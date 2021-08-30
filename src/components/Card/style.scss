@@ -50,8 +50,8 @@
 @media only screen and (max-width: 545px) {
   .Card {
     border-radius: 0;
-    margin-bottom: 0;
-    &:nth-last-child {
+    margin-bottom: 1rem;
+    &:last-child {
       margin-bottom: 0;
     }
 

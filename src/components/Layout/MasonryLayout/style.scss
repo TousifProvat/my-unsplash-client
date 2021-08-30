@@ -1,0 +1,16 @@
+.masonaryContainer {
+  display: flex;
+}
+
+@media only screen and (max-width: 768px) {
+  .masonaryContainer {
+    column-count: 2;
+  }
+}
+
+@media only screen and (max-width: 545px) {
+  .masonaryContainer {
+    column-count: 1;
+    margin: 0;
+  }
+}

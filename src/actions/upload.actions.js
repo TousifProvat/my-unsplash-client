@@ -31,7 +31,6 @@ export const uploadImage = (form) => {
     try {
       dispatch({ type: uploadConstants.IMAGE_UPLOAD_REQUEST });
       const res = await axios.post('/images/upload', form);
-      console.log(store);
       if (res.status === 201) {
         dispatch({
           type: uploadConstants.IMAGE_UPLOAD_SUCCESS,
