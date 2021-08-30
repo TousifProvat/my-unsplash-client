@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
 
 // style
@@ -42,6 +42,7 @@ const HomePage = ({ show, setShow }) => {
             imageSrc={image.imageLink}
             id={image._id}
             title={image.title}
+            public_id={image.public_id}
           />
         ))}
       </MasonryLayout>

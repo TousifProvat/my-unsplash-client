@@ -1,12 +1,18 @@
+import { Image, Transformation } from 'cloudinary-react';
+
 import './style.scss';
 
 // ui
 import Button from '../UI/Button';
 
-const Card = ({ onClick, imageSrc, id, title }) => {
+const Card = ({ onClick, imageSrc, id, title, public_id }) => {
   return (
     <div className="Card">
-      <img src={imageSrc} alt={title} />
+      <Image cloudName="imageuploader-tap" secure="true" publicId={public_id}>
+        <Transformation quality="auto:eco" />
+        <Transformation fetchFormat="auto" />
+        <Transformation dpr="auto" />
+      </Image>
       <div className="details">
         <Button
           text="delete"

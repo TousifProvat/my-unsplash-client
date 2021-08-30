@@ -9,6 +9,7 @@ const initialState = {
   message: '',
 };
 
+// eslint-disable-next-line
 export default (state = initialState, action) => {
   switch (action.type) {
     case uploadConstants.GET_IMAGES_REQUEST:
@@ -34,7 +35,6 @@ export default (state = initialState, action) => {
         loading: true,
       });
     case uploadConstants.IMAGE_UPLOAD_SUCCESS:
-
       return (state = {
         ...state,
         loading: false,

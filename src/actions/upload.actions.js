@@ -1,9 +1,6 @@
 import axios from '../helper/axios';
 import { uploadConstants } from './constants';
 
-// store
-import store from '../store';
-
 const getAllImage = () => {
   return async (dispatch) => {
     try {
