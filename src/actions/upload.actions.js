@@ -75,4 +75,28 @@ export const deleteImage = (image) => {
   };
 };
 
+export const getImagebyLabel = (label) => {
+  return async (dispatch) => {
+    try {
+      dispatch({ type: uploadConstants.GET_IMAGE_BY_LABEL_REQUEST });
+      const res = await axios.get('/images/get');
+      if (res.status === 200) {
+        const searchResults = res.data.Images.filter((image) => {
+          return image.title.includes(label);
+        });
+
+        dispatch({
+          type: uploadConstants.GET_IMAGE_BY_LABEL_SUCCESS,
+          payload: searchResults,
+        });
+      }
+    } catch (err) {
+      dispatch({
+        type: uploadConstants.GET_IMAGE_BY_LABEL_FAILURE,
+        payload: { error: err.message },
+      });
+    }
+  };
+};
+
 export { getAllImage };

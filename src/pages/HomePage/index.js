@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
+import Masonry from 'react-masonry-css';
 
 // style
 import './style.scss';
@@ -8,7 +9,6 @@ import './style.scss';
 import Card from '../../components/Card';
 import AddImageModal from './subComponents/AddImageModal';
 import DeleteImageModal from './subComponents/DeleteImageModal';
-import MasonryLayout from '../../components/Layout/MasonryLayout';
 
 const HomePage = ({ show, setShow }) => {
   const upload = useSelector((state) => state.upload);
@@ -21,20 +21,22 @@ const HomePage = ({ show, setShow }) => {
     setDeleteModalShow(true);
   };
 
-  const setColumn = () => {
-    if (window.innerWidth < 545) {
-      return 1;
-    } else if (window.innerWidth < 769 && window.innerWidth > 545) {
-      return 2;
-    } else {
-      return 3;
-    }
+  const breakpointColumnsObj = {
+    default: 3,
+    1100: 3,
+    769: 2,
+    545: 1,
   };
 
   return (
     <div id="home">
       <AddImageModal show={show} setShow={setShow} />
-      <MasonryLayout columns={setColumn()} gap={16}>
+      <Masonry
+        breakpointCols={breakpointColumnsObj}
+        className="my-masonry-grid"
+        style={{ display: 'flex' }}
+        columnClassName="my-masonry-grid_column"
+      >
         {upload.images.map((image, index) => (
           <Card
             key={index}
@@ -45,8 +47,7 @@ const HomePage = ({ show, setShow }) => {
             public_id={image.public_id}
           />
         ))}
-      </MasonryLayout>
-
+      </Masonry>
       <DeleteImageModal
         show={deleteModalShow}
         setShow={setDeleteModalShow}

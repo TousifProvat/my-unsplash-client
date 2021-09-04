@@ -29,6 +29,23 @@ export default (state = initialState, action) => {
         loading: false,
         error: action.payload.error,
       });
+    case uploadConstants.GET_IMAGE_BY_LABEL_REQUEST:
+      return (state = {
+        ...state,
+        loading: true,
+      });
+    case uploadConstants.GET_IMAGE_BY_LABEL_SUCCESS:
+      return (state = {
+        ...state,
+        loading: false,
+        images: action.payload,
+      });
+    case uploadConstants.GET_IMAGE_BY_LABEL_FAILURE:
+      return (state = {
+        ...state,
+        loading: false,
+        error: action.payload.error,
+      });
     case uploadConstants.IMAGE_UPLOAD_REQUEST:
       return (state = {
         ...state,

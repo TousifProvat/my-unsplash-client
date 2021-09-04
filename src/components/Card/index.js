@@ -13,6 +13,7 @@ const Card = ({ onClick, imageSrc, id, title, public_id }) => {
         <Transformation fetchFormat="auto" />
         <Transformation dpr="auto" />
       </Image>
+      {/* <img src={imageSrc} alt={title} /> */}
       <div className="details">
         <Button
           text="delete"

@@ -1,12 +1,19 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { getImagebyLabel } from '../../actions/upload.actions';
 import './style.scss';
 
 const SearchBar = (props) => {
   const [text, setText] = useState('');
 
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getImagebyLabel(text));
+  }, [text]);
+
   const handleInput = (e) => {
     setText(e.target.value);
-    props.handleSearch(text);
   };
 
   return (
