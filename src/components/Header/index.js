@@ -17,7 +17,6 @@ const Header = (props) => {
           style={{
             marginLeft: '2rem',
           }}
-          handleSearch={props.handleSearch}
         />
       </div>
       <div className="headerRight">

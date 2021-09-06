@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { getImagebyLabel } from '../../actions/upload.actions';
 import './style.scss';
@@ -8,12 +8,9 @@ const SearchBar = (props) => {
 
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(getImagebyLabel(text));
-  }, [text]);
-
-  const handleInput = (e) => {
+  const onChange = (e) => {
     setText(e.target.value);
+    dispatch(getImagebyLabel(e.target.value));
   };
 
   return (
@@ -24,7 +21,7 @@ const SearchBar = (props) => {
         className="searchInput"
         placeholder="Search by name"
         value={text}
-        onChange={handleInput}
+        onChange={onChange}
       />
     </div>
   );
