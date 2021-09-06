@@ -9,6 +9,7 @@ import './style.scss';
 import Card from '../../components/Card';
 import AddImageModal from './subComponents/AddImageModal';
 import DeleteImageModal from './subComponents/DeleteImageModal';
+import Spinner from '../../components/Spinner';
 
 const HomePage = ({ show, setShow }) => {
   const upload = useSelector((state) => state.upload);
@@ -31,23 +32,37 @@ const HomePage = ({ show, setShow }) => {
   return (
     <div id="home">
       <AddImageModal show={show} setShow={setShow} />
-      <Masonry
-        breakpointCols={breakpointColumnsObj}
-        className="my-masonry-grid"
-        style={{ display: 'flex' }}
-        columnClassName="my-masonry-grid_column"
-      >
-        {upload.images.map((image, index) => (
-          <Card
-            key={index}
-            onClick={handleCard}
-            imageSrc={image.imageLink}
-            id={image._id}
-            title={image.title}
-            public_id={image.public_id}
-          />
-        ))}
-      </Masonry>
+      {!upload.loading && upload.images < 1 && (
+        <p
+          style={{
+            textAlign: 'center',
+            fontSize: '1.5rem',
+          }}
+        >
+          {upload.message}
+        </p>
+      )}
+      {upload.loading ? (
+        <Spinner />
+      ) : (
+        <Masonry
+          breakpointCols={breakpointColumnsObj}
+          className="my-masonry-grid"
+          style={{ display: 'flex' }}
+          columnClassName="my-masonry-grid_column"
+        >
+          {upload.images.map((image, index) => (
+            <Card
+              key={index}
+              onClick={handleCard}
+              imageSrc={image.imageLink}
+              id={image._id}
+              title={image.title}
+              public_id={image.public_id}
+            />
+          ))}
+        </Masonry>
+      )}
       <DeleteImageModal
         show={deleteModalShow}
         setShow={setDeleteModalShow}

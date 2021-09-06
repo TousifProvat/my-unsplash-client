@@ -6,6 +6,7 @@ import { getAllImage } from './actions';
 import Layout from './components/Layout';
 import Button from './components/UI/Button';
 import Header from './components/Header';
+import Spinner from './components/Spinner';
 
 function App() {
   const [show, setShow] = useState(false);

@@ -45,6 +45,7 @@ export default (state = initialState, action) => {
         ...state,
         loading: false,
         error: action.payload.error,
+        message: action.payload.message,
       });
     case uploadConstants.IMAGE_UPLOAD_REQUEST:
       return (state = {
@@ -71,7 +72,6 @@ export default (state = initialState, action) => {
       return (state = {
         ...state,
         loading: false,
-        message: action.payload.message,
       });
     case uploadConstants.DELETE_IMAGE_FAILURE:
       return (state = {

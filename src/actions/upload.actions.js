@@ -57,7 +57,6 @@ export const deleteImage = (image) => {
       if (res.status === 202) {
         dispatch({
           type: uploadConstants.DELETE_IMAGE_SUCCESS,
-          payload: { message: res.data.message },
         });
         dispatch(getAllImage());
       } else {
@@ -89,11 +88,18 @@ export const getImagebyLabel = (label) => {
           type: uploadConstants.GET_IMAGE_BY_LABEL_SUCCESS,
           payload: searchResults,
         });
+
+        if (searchResults.length < 1) {
+          dispatch({
+            type: uploadConstants.GET_IMAGE_BY_LABEL_FAILURE,
+            payload: { message: 'No Image', error: null },
+          });
+        }
       }
     } catch (err) {
       dispatch({
         type: uploadConstants.GET_IMAGE_BY_LABEL_FAILURE,
-        payload: { error: err.message },
+        payload: { error: err.message, message: '' },
       });
     }
   };
